@@ -13,9 +13,24 @@ public class Controller {
 
     public void play() {
         initGame();
+        playGame();
     }
 
     private void initGame() {
         model.initGame();
+    }
+
+    private void playGame() {
+        boolean isWin;
+
+        do {
+            isWin = playTurnAndGetResult();
+        } while (!isWin);
+    }
+
+    private boolean playTurnAndGetResult() {
+        view.displayEnterNumberMessage();
+        // TODO: 2021/10/02
+        return true;
     }
 }
