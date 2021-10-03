@@ -11,6 +11,10 @@ public class View {
 		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
 	}
 
+	public void displayInputErrorMessage() {
+		System.out.println("[ERROR] 잘못된 입력값 입니다. 유효한 숫자를 입력해주세요.");
+	}
+
 	public void displayHintMessage(TurnResult turnResult) {
 		if (turnResult.isNothing()) {
 			displayNothingMessage();

@@ -3,24 +3,49 @@ package baseball.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import baseball.InvalidBaseballNumberException;
+
 public class Model {
     StrikeNumber number;
     TurnResult turnResult;
-    boolean turnContinue;
+    boolean isWin;
+    boolean isInvalidInput;
 
     public void initGame() {
         number = new StrikeNumber();
+        turnResult = null;
+        isWin = false;
+        isInvalidInput = false;
     }
 
-    public void playTurn(String userInput) {
+    public void playTurn(String userInput) throws InvalidBaseballNumberException {
+        if (!validateUserInput(userInput)) {
+            isInvalidInput = true;
+            throw new InvalidBaseballNumberException();
+        }
+
+        turnResult = checkTurnResult(userInput);
+        isWin = turnResult.isWin();
+    }
+
+    private boolean validateUserInput(String userInput) {
+        try {
+            Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return !userInput.contains("0") && userInput.length() == 3;
+    }
+
+    private TurnResult checkTurnResult(String userInput) {
         List<NumberResult> numberResults = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
             numberResults.add(checkNumberResult(userInput, i));
         }
 
-        turnResult = new TurnResult(numberResults);
-        turnContinue = !turnResult.isWin();
+        return new TurnResult(numberResults);
     }
 
     private NumberResult checkNumberResult(String userInput, int index) {
@@ -34,6 +59,10 @@ public class Model {
     }
 
     public boolean isTurnContinue() {
-        return turnContinue;
+        return !isWin && !isInvalidInput;
+    }
+
+    public boolean isWin() {
+        return isWin;
     }
 }

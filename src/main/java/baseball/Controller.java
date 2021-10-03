@@ -30,11 +30,20 @@ public class Controller {
 
     private void playTurn() {
         view.displayEnterNumberMessage();
-        model.playTurn(Console.readLine());
+
+        try {
+            model.playTurn(Console.readLine());
+        } catch (InvalidBaseballNumberException e) {
+            view.displayInputErrorMessage();
+            return;
+        }
+
         view.displayHintMessage(model.getTurnResult());
     }
 
     private void endGame() {
-        view.displayWinMessage();
+        if (model.isWin()) {
+            view.displayWinMessage();
+        }
     }
 }
