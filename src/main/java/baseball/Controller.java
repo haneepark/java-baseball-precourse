@@ -1,7 +1,6 @@
 package baseball;
 
 import baseball.model.Model;
-import baseball.model.TurnResult;
 import nextstep.utils.Console;
 
 public class Controller {
@@ -16,6 +15,7 @@ public class Controller {
     public void play() {
         initGame();
         playGame();
+        endGame();
     }
 
     private void initGame() {
@@ -23,18 +23,18 @@ public class Controller {
     }
 
     private void playGame() {
-        boolean isWin;
-
         do {
-            isWin = playTurnAndGetResult();
-        } while (!isWin);
+            playTurn();
+        } while (model.isTurnContinue());
     }
 
-    private boolean playTurnAndGetResult() {
+    private void playTurn() {
         view.displayEnterNumberMessage();
-        String userInput = Console.readLine();
-        TurnResult turnResult = model.checkTurnResult(userInput);
-        view.displayHintMessage(turnResult);
-        return turnResult.isWin();
+        model.playTurn(Console.readLine());
+        view.displayHintMessage(model.getTurnResult());
+    }
+
+    private void endGame() {
+        view.displayWinMessage();
     }
 }
