@@ -18,4 +18,16 @@ public class StrikeNumber {
 
         numbers = new ArrayList<>(numbersSet);
     }
+
+    public NumberResult checkResult(int guessIndex, int guessNumber) {
+        int index = numbers.indexOf(guessNumber);
+
+        if (index == -1) {
+            return NumberResult.NOTHING;
+        }
+
+        return index == guessIndex
+            ? NumberResult.STRIKE
+            : NumberResult.BALL;
+    }
 }

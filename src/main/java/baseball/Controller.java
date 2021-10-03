@@ -1,6 +1,8 @@
 package baseball;
 
 import baseball.model.Model;
+import baseball.model.TurnResult;
+import nextstep.utils.Console;
 
 public class Controller {
     private Model model;
@@ -30,7 +32,8 @@ public class Controller {
 
     private boolean playTurnAndGetResult() {
         view.displayEnterNumberMessage();
-        // TODO: 2021/10/02
-        return true;
+        String userInput = Console.readLine();
+        TurnResult turnResult = model.checkTurnResult(userInput);
+        return turnResult.isWin();
     }
 }
