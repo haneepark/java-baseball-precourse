@@ -47,5 +47,9 @@ public class Controller {
         }
 
         view.displayRestartOrExitMessage();
+
+        if ("1".equals(Console.readLine())) {
+            play();
+        }
     }
 }
