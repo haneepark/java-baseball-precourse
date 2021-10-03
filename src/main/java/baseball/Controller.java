@@ -34,6 +34,7 @@ public class Controller {
         view.displayEnterNumberMessage();
         String userInput = Console.readLine();
         TurnResult turnResult = model.checkTurnResult(userInput);
+        view.displayHintMessage(turnResult);
         return turnResult.isWin();
     }
 }

@@ -26,4 +26,16 @@ public class TurnResult {
 	public boolean isWin() {
 		return numberOfStrikes == 3;
 	}
+
+	public boolean isNothing() {
+		return numberOfStrikes + numberOfBalls == 0;
+	}
+
+	public int getNumberOfBalls() {
+		return numberOfBalls;
+	}
+
+	public int getNumberOfStrikes() {
+		return numberOfStrikes;
+	}
 }
