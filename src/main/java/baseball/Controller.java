@@ -45,5 +45,7 @@ public class Controller {
         if (model.isWin()) {
             view.displayWinMessage();
         }
+
+        view.displayRestartOrExitMessage();
     }
 }
