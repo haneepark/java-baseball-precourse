@@ -6,13 +6,13 @@ import java.util.List;
 import baseball.InvalidBaseballNumberException;
 
 public class Model {
-    StrikeNumber number;
-    TurnResult turnResult;
-    boolean isWin;
-    boolean isInvalidInput;
+    private StrikeNumber number;
+    private TurnResult turnResult;
+    private boolean isWin;
+    private boolean isInvalidInput;
 
-    public void initGame() {
-        number = new StrikeNumber();
+    public void initGame(StrikeNumber strikeNumber) {
+        number = strikeNumber;
         turnResult = null;
         isWin = false;
         isInvalidInput = false;

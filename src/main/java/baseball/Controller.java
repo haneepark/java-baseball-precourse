@@ -1,6 +1,7 @@
 package baseball;
 
 import baseball.model.Model;
+import baseball.model.StrikeNumber;
 import nextstep.utils.Console;
 
 public class Controller {
@@ -19,7 +20,7 @@ public class Controller {
     }
 
     private void initGame() {
-        model.initGame();
+        model.initGame(new StrikeNumber());
     }
 
     private void playGame() {
